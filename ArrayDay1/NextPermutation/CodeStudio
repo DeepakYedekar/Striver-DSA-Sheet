@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		List<Integer> li=new ArrayList<>();
+		if(permutation==null || permutation.size()<=1){
+			for(int x: permutation){
+				li.add(permutation.get(x));
+			}
+			return li;
+		}
+		
+		int idx1=-1,i=permutation.size()-2;
+		while(i>=0){
+		if(permutation.get(i)<permutation.get(i+1)){
+			idx1=i;
+			break;
+		}
+			i--;
+		}
+		
+		if(idx1<0){
+			sort(permutation,i,N-1);
+			for(int x: permutation){
+				li.add(permutation.get(x));
+			}
+			return li;
+		}else{
+			int idx2=0,j=permutation.size()-1;
+			while(j>=0){
+				if(permutation.get(j)>permutation.get(idx1)){
+					idx2=j;
+					break;
+				}
+				j--;
+			}
+			swap(permutation,idx1,idx2);
+			sort(permutation,idx1+1,permutation.size()-1);
+		}
+	}
+}

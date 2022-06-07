@@ -1,0 +1,45 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums.length==1) return;
+        int idx1=-1,i=nums.length-2;
+        while(i>=0){
+            if(nums[i]<nums[i+1]){
+                idx1=i;
+                break;
+            }
+            i--;
+        }
+        
+        if(idx1<0){
+            sort(nums,0,nums.length-1);
+            return;
+        }
+        int idx2=0,j=nums.length-1;
+        while(j>=0){
+            if(nums[j]>nums[idx1]){
+                idx2=j;
+                break;
+            }
+            j--;
+        }
+        swap(nums,idx1,idx2);
+        sort(nums,idx1+1,nums.length-1);
+        
+    }
+    
+    public void swap(int a[],int i,int j){
+        int temp=a[i];
+        a[i]=a[j];
+        a[j]=temp;
+    }
+    
+    public void sort(int a[],int i,int j){
+        while(i<=j){
+        if(a[i]>a[j]){
+            swap(a,i,j);
+        }
+        i++;
+        j--;
+        }
+    }
+}

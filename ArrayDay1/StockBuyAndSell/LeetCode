@@ -1,0 +1,13 @@
+class Solution {
+   public int maxProfit(int[] a){
+            int maxPro=0,minPrice=Integer.MAX_VALUE;
+            for(int i=0;i<a.length;i++){
+                if(a[i]<minPrice){
+                    minPrice=a[i];
+                }else if(a[i]-minPrice>maxPro){
+                    maxPro=a[i]-minPrice;
+                }
+        }
+        return maxPro;
+    }
+}
